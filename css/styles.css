@@ -11,6 +11,7 @@
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
+  --color-wrong-pick: #EDA769;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -39,7 +40,12 @@ h2 {
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
   font-size: var(--font-size-large);
+}
+
+h3 {
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
 }
 
 button {
@@ -96,6 +102,10 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: .8s cubic-bezier(.6, 1.5, .6, 1);
+  transform: rotate(360deg);
 }
 
 /* Keyboard */
@@ -112,12 +122,24 @@ button {
   color: #FFFFFF;
 }
 
+.wrong {
+  background: var(--color-wrong-pick);
+}
+
 .btn__reset {
   padding: 8px;
   margin: 50px auto;
   background: #FFFFFF;
   border-radius: 5px;
   font-size: var(--font-size-medium);
+  color: var(--color-start);
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.25), 0 18px 50px 0 rgba(0,0,0,0.20);
+}
+
+.btn__reset:hover {
+  opacity: 0.8;
 }
 
 /* Overlay */
@@ -141,17 +163,6 @@ button {
 
 .start {
   background-color: var(--color-start);
-}
-
-.start a {
-  color: var(--color-win);
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.25), 0 18px 50px 0 rgba(0,0,0,0.20);
-}
-
-.start a:hover {
-  opacity: 0.8;
 }
 
 .win {
