@@ -27,23 +27,6 @@ startButton.addEventListener('click', () => {
 	}
 });
 
-keyboard.addEventListener('click', (e) => {
-	if (e.target.tagName === 'BUTTON') {
-		const button = e.target;
-		button.className = 'chosen';
-		button.setAttribute('disabled', '');
-		const letter = button.textContent;
-		const letterFound = checkLetter(letter);
-
-		// check value of letterFound variable
-		if (letterFound === null) {
-			heartArray[missed].src = 'images/lostHeart.png';
-			button.className = 'wrong';
-			missed++;
-		}
-	}
-})
-
 function getRandomPhraseAsArray(arr) {
 	// choose random phrase from arr
 	const randomNumber = Math.floor(Math.random() * arr.length);
@@ -76,6 +59,27 @@ function addPhraseToDisplay(arr) {
 	}
 }
 
+keyboard.addEventListener('click', (e) => {
+	if (e.target.tagName === 'BUTTON') {
+		const button = e.target;
+		button.className = 'chosen';
+		button.setAttribute('disabled', '');
+		const letter = button.textContent;
+		const letterFound = checkLetter(letter);
+
+		// check value of letterFound variable
+		if (letterFound === null) {
+			heartArray[missed].src = 'images/lostHeart.png';
+			button.className = 'wrong';
+			missed++;
+		}
+	}
+
+	// check for winner
+	checkWin();
+
+})
+
 function checkLetter(letter) {
 	// get all of the elements with class "letter"
 	const letters = document.querySelectorAll('.letter');
@@ -94,8 +98,7 @@ function checkLetter(letter) {
 		} 
 	}
 
-	// check for winner
-	checkWin();
+
 	
 	if (matchCounter > 0) {
 		return matchingLetter;
@@ -119,7 +122,7 @@ function checkWin() {
 		overlay.appendChild(h3);
 		h3.textContent = 'You Won!';
 		showCorrectPhrase();
-	} else if (missed >= 4) { 
+	} else if (missed >= 5) { 
 		// show overlay screen with class "lose" and appropriate text
 		removeShowClass();
 		overlay.className = 'lose';
